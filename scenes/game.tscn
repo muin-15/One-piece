@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://m8nbuado88gy"]
+
+[ext_resource type="PackedScene" uid="uid://i8pufc02n8qm" path="res://scenes/blue_wizard.tscn" id="1_uwrxv"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
+distance = -30.0
+
+[node name="Game" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(643, 239)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-165, 66)
+shape = SubResource("WorldBoundaryShape2D_uwrxv")
+
+[node name="BlueWizard" parent="." instance=ExtResource("1_uwrxv")]
+position = Vector2(475, 331)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(544, 139)
