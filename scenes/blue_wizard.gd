@@ -20,6 +20,7 @@ func _physics_process(delta):
 	
 	if direction:
 		velocity.x = direction * SPEED
+		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	if not is_on_floor():
@@ -37,3 +38,4 @@ func _physics_process(delta):
 		$AnimatedSprite2D.play("idle")
 		sounds["walking"].stop()
 	move_and_slide()
+	print(velocity.x)

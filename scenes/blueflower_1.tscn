@@ -3540,7 +3540,7 @@ position = Vector2(8, -58.000008)
 scale = Vector2(0.3088379, 0.30289713)
 sprite_frames = SubResource("SpriteFrames_0rwlq")
 animation = &"platwind"
-frame_progress = 0.27668488
+frame_progress = 0.39630577
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, -64)

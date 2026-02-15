@@ -431,8 +431,7 @@ script = ExtResource("1_f73fk")
 position = Vector2(4.0000014, -132)
 scale = Vector2(0.88671875, 0.8955079)
 sprite_frames = SubResource("SpriteFrames_tpdnl")
-animation = &"idle"
-frame_progress = 0.24879552
+animation = &"walk"
 
 [node name="walk" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
 stream = ExtResource("98_qvtnu")
