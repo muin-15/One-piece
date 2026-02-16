@@ -422,14 +422,15 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0i7ng"]
-radius = 58.0
+radius = 44.04543
 
 [node name="BlueWizard" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_f73fk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(4.0000014, -132)
-scale = Vector2(0.88671875, 0.8955079)
+position = Vector2(-1, -85)
+scale = Vector2(0.73046875, 0.71337897)
 sprite_frames = SubResource("SpriteFrames_tpdnl")
 animation = &"walk"
 
@@ -447,5 +448,7 @@ volume_db = 5.0
 area_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -58)
+position = Vector2(-2, -44)
 shape = SubResource("CircleShape2D_0i7ng")
+
+[node name="Camera2D" type="Camera2D" parent="."]
