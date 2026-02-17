@@ -1,6 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://c0d6tyob3ssmh"]
+[gd_scene load_steps=34 format=3 uid="uid://c0d6tyob3ssmh"]
 
 [ext_resource type="Texture2D" uid="uid://cc172xh6vjul3" path="res://assets/Slimes/SlimeGreen/SlimeBasic_00000.png" id="1_8beiy"]
+[ext_resource type="Script" uid="uid://dau5o82udr1pd" path="res://scenes/jump1.gd" id="1_y2nb2"]
 [ext_resource type="Texture2D" uid="uid://c1pn01qujlgu2" path="res://assets/Slimes/SlimeGreen/SlimeBasic_00001.png" id="2_y2nb2"]
 [ext_resource type="Texture2D" uid="uid://cu2b828xajbyd" path="res://assets/Slimes/SlimeGreen/SlimeBasic_00002.png" id="3_2a2kf"]
 [ext_resource type="Texture2D" uid="uid://c0e7n408nxrao" path="res://assets/Slimes/SlimeGreen/SlimeBasic_00003.png" id="4_hhhya"]
@@ -132,14 +133,16 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_otqhi"]
 radius = 92.021736
 
-[node name="greenslime" type="Node2D"]
+[node name="greenslime" type="CharacterBody2D"]
+script = ExtResource("1_y2nb2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(9, -101)
+position = Vector2(-0.25000954, -81.50001)
+scale = Vector2(0.7779255, 0.7695312)
 sprite_frames = SubResource("SpriteFrames_sw4ri")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(6, -95)
+position = Vector2(0, -92)
 shape = SubResource("CircleShape2D_otqhi")

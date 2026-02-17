@@ -1,6 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://ddyr0drk5pmee"]
+[gd_scene load_steps=34 format=3 uid="uid://ddyr0drk5pmee"]
 
 [ext_resource type="Texture2D" uid="uid://cepqqq6yuqfgb" path="res://assets/Slimes/SlimeOrange/SlimeOrange_00000.png" id="1_e13ei"]
+[ext_resource type="Script" uid="uid://cigx2edvx0ul7" path="res://scenes/jump2.gd" id="1_veqmj"]
 [ext_resource type="Texture2D" uid="uid://1qkeo1ixihx6" path="res://assets/Slimes/SlimeOrange/SlimeOrange_00001.png" id="2_veqmj"]
 [ext_resource type="Texture2D" uid="uid://b24s54y7pwxoa" path="res://assets/Slimes/SlimeOrange/SlimeOrange_00002.png" id="3_l0s3r"]
 [ext_resource type="Texture2D" uid="uid://vrg2oqyw15y0" path="res://assets/Slimes/SlimeOrange/SlimeOrange_00003.png" id="4_7i0yq"]
@@ -132,10 +133,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_7mw6v"]
 radius = 95.257545
 
-[node name="orangeslime" type="Node2D"]
+[node name="orangeslime" type="CharacterBody2D"]
+script = ExtResource("1_veqmj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -123)
+position = Vector2(3.000001, -95)
+scale = Vector2(0.7799019, 0.74451214)
 sprite_frames = SubResource("SpriteFrames_q1jwj")
 animation = &"normal"
 autoplay = "normal"

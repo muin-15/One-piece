@@ -351,9 +351,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("29_2ste6")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
-"speed": 15.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -429,10 +429,12 @@ z_index = 1
 script = ExtResource("1_f73fk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -85)
-scale = Vector2(0.73046875, 0.71337897)
+position = Vector2(2, 132)
+scale = Vector2(0.59765625, 0.57153326)
 sprite_frames = SubResource("SpriteFrames_tpdnl")
-animation = &"walk"
+animation = &"jump"
+frame = 7
+frame_progress = 1.0
 
 [node name="walk" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
 stream = ExtResource("98_qvtnu")
@@ -448,7 +450,9 @@ volume_db = 5.0
 area_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -44)
+position = Vector2(1, 176)
 shape = SubResource("CircleShape2D_0i7ng")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-2, -16)
+process_callback = 0
