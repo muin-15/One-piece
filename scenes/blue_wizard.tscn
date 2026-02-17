@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://i8pufc02n8qm"]
+[gd_scene load_steps=103 format=3 uid="uid://i8pufc02n8qm"]
 
 [ext_resource type="Texture2D" uid="uid://xwh48iiacc6t" path="res://assets/BlueWizard/2BlueWizardIdle/Chara - BlueIdle00000.png" id="1_18lt8"]
 [ext_resource type="Script" uid="uid://bviiepa1pacbm" path="res://scenes/blue_wizard.gd" id="1_f73fk"]
@@ -97,6 +97,7 @@
 [ext_resource type="Texture2D" uid="uid://bq5nk5t8cdvw6" path="res://assets/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00013.png" id="47_yosit"]
 [ext_resource type="Texture2D" uid="uid://b6udkmrr53be8" path="res://assets/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00014.png" id="48_1todg"]
 [ext_resource type="Texture2D" uid="uid://s2may777xmtv" path="res://assets/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00015.png" id="49_igph7"]
+[ext_resource type="AudioStream" uid="uid://bvpidsm6ds7ls" path="res://assets/45_Landing_01.wav" id="98_hek0p"]
 [ext_resource type="AudioStream" uid="uid://chkmpl04ohwfy" path="res://assets/08_Step_rock_02.wav" id="98_qvtnu"]
 [ext_resource type="AudioStream" uid="uid://jmefwwlqkn8i" path="res://assets/30_Jump_03.wav" id="99_w22g6"]
 
@@ -151,9 +152,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("17_2m5vv")
 }],
-"loop": true,
+"loop": false,
 "name": &"dash1",
-"speed": 10.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -424,19 +425,23 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0i7ng"]
 radius = 44.04543
 
-[node name="BlueWizard" type="CharacterBody2D"]
+[node name="BlueWizard" type="CharacterBody2D" groups=["player"]]
 z_index = 1
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_f73fk")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["player"]]
 position = Vector2(2, 132)
 scale = Vector2(0.59765625, 0.57153326)
 sprite_frames = SubResource("SpriteFrames_tpdnl")
-animation = &"jump"
-frame = 7
-frame_progress = 1.0
+animation = &"dash1"
+frame_progress = 0.6156802
 
-[node name="walk" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
+[node name="dash" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
+stream = ExtResource("98_hek0p")
+
+[node name="walk" type="AudioStreamPlayer2D" parent="AnimatedSprite2D" groups=["player"]]
 stream = ExtResource("98_qvtnu")
 volume_db = 3.5
 pitch_scale = 1.3
@@ -444,15 +449,17 @@ autoplay = true
 area_mask = 3
 playback_type = 1
 
-[node name="jump" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
+[node name="jump" type="AudioStreamPlayer2D" parent="AnimatedSprite2D" groups=["player"]]
 stream = ExtResource("99_w22g6")
 volume_db = 5.0
 area_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
 position = Vector2(1, 176)
 shape = SubResource("CircleShape2D_0i7ng")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["player"]]
 position = Vector2(-2, -16)
 process_callback = 0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

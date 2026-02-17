@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://cukb18pq1c5d6"]
+[gd_scene load_steps=75 format=3 uid="uid://cukb18pq1c5d6"]
 
 [ext_resource type="Script" uid="uid://do1fm5bss6u3r" path="res://scenes/plant.gd" id="1_714g8"]
 [ext_resource type="Script" uid="uid://clmyoud4kvvnf" path="res://scenes/jumper.gd" id="70_40x8p"]
@@ -301,10 +301,14 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c8ci4"]
-radius = 60.0
-height = 120.0
+radius = 43.0
+height = 86.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_714g8"]
+radius = 133.73747
 
 [node name="blueflower1" type="CharacterBody2D"]
+collision_layer = 4
 script = ExtResource("1_714g8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -316,6 +320,17 @@ frame = 8
 frame_progress = 0.35643864
 script = ExtResource("70_40x8p")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
 position = Vector2(4, -64)
 shape = SubResource("CapsuleShape2D_c8ci4")
+
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+position = Vector2(8, -58.000008)
+scale = Vector2(0.3088379, 0.30289713)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["player"]]
+shape = SubResource("CircleShape2D_714g8")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
