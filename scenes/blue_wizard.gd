@@ -18,24 +18,16 @@ func _physics_process(delta):
 	
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
-	# -----------------------------------------------
-	# PASTE THIS CODE HERE:
-	# If we are hurt, apply movement but STOP the rest of the function
-	# so we don't overwrite the 'dash1' animation.
 	if is_invincible:
 		move_and_slide()
 		return
-	# -----------------------------------------------
 
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
-		# ... rest of your code
 		velocity.y = JUMP_VELOCITY
 		sounds["jumping"].play()
 	if Input.is_action_just_pressed("double_jump") and is_on_floor():
 		velocity.y = DOUBLE_VELOCITY
 		sounds["jumping"].play()
-	
 	var direction = Input.get_axis("ui_left", "ui_right")
 	
 	if direction:
@@ -62,43 +54,22 @@ func _physics_process(delta):
 	print(velocity.x)
 
 func take_damage():
-	# If the player is already invincible (because they just got hit),
-	# do nothing. Stop the function right here.
 	if is_invincible:
 		return
 	
-	# If we are NOT invincible, then...
-	is_invincible = true # 1. Turn on invincibility.
-	health -= 1          # 2. Subtract 1 from our health.
-	print("Player health is now: ", health) # (Optional) Shows health in the Output window for debugging.
+	is_invincible = true 
+	health -= 1          
 	if not sounds["walking"] or sounds ["jumping"]:
 		sounds["dashing"].play()
-	# 3. Tell the animation sprite to play the damage animation.
 	$AnimatedSprite2D.play("dash1") 
-	
-	# 4. Check if the game is over.
 	if health <= 0:
 		print("GAME OVER")
-		# For now, just reload the scene to restart.
 		get_tree().reload_current_scene()
-		
-# --- ADD THIS EMPTY FUNCTION FOR NOW ---
-# This function will be connected to a signal from the animation player.
-# It will run automatically when ANY animation finishes.
 func _on_animated_sprite_2d_animation_finished():
-	# We only care if the "dash" animation was the one that finished.
 	if $AnimatedSprite2D.animation == "dash1":
-		# If it was, go back to the idle animation.
 		$AnimatedSprite2D.play("idle")
-		# And, most importantly, turn invincibility OFF so we can get hurt again.
 		is_invincible = false
-# -----------------------------------------
-
-
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("player"):
 		print("GOAL REACHED! Level Complete.")
-		
-		# *** This is the win action ***
-		# Simply reload the scene, just like the player does on death.
-		get_tree().reload_current_scene()# Replace with function body.
+		get_tree().reload_current_scene()
